@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 import time
 import openpyxl
 
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Set the scopes and API service name/version
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
@@ -47,19 +49,25 @@ def upload_video(video_file, title, description, tags, publish_time):
     print(f"Uploaded video with ID: {response['id']}")
 if __name__ == "__main__":
     
-    start_number = 1
+    start_number = 20 #put starting vid number
+    
+    date_modifier = 4 #put starting day
+    month_modifier = 8 #put starting month
+    
+
     no_vids=256
 
-    path = "C:\\Users\\sudha\\Documents\\GitHub\\video-poster\\ai_shorts_psychology_with_separate_tags.xlsx"
+    fileName = "ai_shorts_psychology_with_separate_tags.xlsx"
+    path = os.path.join(script_dir, fileName)
     wb = openpyxl.load_workbook(path)
     sheet = wb.active
 
-    date_modifier = 10 #put starting day
-    month_modifier = 7 #put starting month
+    
     youtube = get_authenticated_service()
     for i in range(start_number,start_number+no_vids):
         I=str(i)
-        video_file = "C:\\Users\\sudha\\Documents\\GitHub\\video-poster\\videos to post\\"+I+".mp4"
+        videoName = "videos to post\\"+I+".mp4"
+        video_file = os.path.join(script_dir, videoName)
         titleTemp = sheet.cell(row = i+1,column = 1)
         title = str(titleTemp.value)
 
