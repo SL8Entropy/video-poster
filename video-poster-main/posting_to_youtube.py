@@ -28,10 +28,6 @@ def get_authenticated_service(Input):
         flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
         "client_secret_949978928070-pu7g01jbd3ndco42rdvqjjv3ch2nhsnc.apps.googleusercontent.com.json", SCOPES)
         credentials = flow.run_local_server(port=0)
-    elif(Input == 3):
-        flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
-        "client_secret_967439837831-26u1s4qfvlrurioka0ltbkd6kkhsl6gn.apps.googleusercontent.com.json", SCOPES)
-        credentials = flow.run_local_server(port=0)
     else:
         print("Finished")
         
@@ -80,7 +76,7 @@ if __name__ == "__main__":
 
     start_number = int(sheet2.cell(row = 1, column = 1).value)
     
-    appNo = 3
+    appNo = 1
     count = 1
     
     youtube = get_authenticated_service(appNo)
